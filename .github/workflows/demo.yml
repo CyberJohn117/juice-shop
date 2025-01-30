@@ -9,8 +9,8 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Run Snyk Analysis
-        run: synk code test --severity-threshold=high
+        run: snyk code test --severity-threshold=high
       - name: Run Snyk Open source dependencies
-        run: synk test --severity-threshold=high
+        run: snyk test --severity-threshold=high
       - name: Monitor snyk
-        run: synk monitor
+        run: snyk monitor
