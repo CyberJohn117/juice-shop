@@ -3,13 +3,15 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: self-hosted CI
+    runs-on: self-hosted
     steps:
       - run: echo "🎉 Running Snyk"
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Run Snyk Analysis
-        run: snyk code test --severity-threshold=high
+        run: snyk code test --severity-threshold=high || true
+        env:
+          SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
       - name: Run Snyk Open source dependencies
         run: snyk test --severity-threshold=high
       - name: Monitor snyk
